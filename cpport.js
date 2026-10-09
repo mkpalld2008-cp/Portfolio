@@ -43,10 +43,12 @@ revealElements.forEach(el => observer.observe(el));
 document.querySelectorAll(".skill-card").forEach(el => observer.observe(el));
 
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 400) {
-        backToTop.classList.add("show");
-    } else {
-        backToTop.classList.remove("show");
+    if (backToTop) {
+        if (window.scrollY > 400) {
+            backToTop.classList.add("show");
+        } else {
+            backToTop.classList.remove("show");
+        }
     }
 
     const sections = document.querySelectorAll("section[id]");
@@ -55,7 +57,7 @@ window.addEventListener("scroll", () => {
     let current = "";
     sections.forEach(section => {
         const sectionTop = section.offsetTop - 120;
-        if (scrollY >= sectionTop) {
+        if (window.scrollY >= sectionTop) {
             current = section.getAttribute("id");
         }
     });
